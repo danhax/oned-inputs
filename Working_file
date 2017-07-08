@@ -1,0 +1,745 @@
+First Run using 1D MCTDHF Code
+==============================
+
+Definition of the Problem
+=============================
+We want to compare 1D MCTDHF calculations to Raiju's 1D calculations by comparing:
+Autocorrelation, D(t), D(omega) and flux. 
+
+System: H2 fixed nuclei - two electrons are repulsive - 1D box with linearly polarized laser pulse on the internuclear axis. 
+--------------
+Raiju's system:
+
+He is using a soft coulomb potential with the form: 
+
+V= 1/sqrt{(r+- R)^2 + a^2} + 1/sqrt{re^2 + a^2}
+
+The first term is Ve-n and the second term is Ve-e.
+
+, where a is the softening parameter. It is a two central potential with electronic interaction included. 
+
+He can provide softness parameters for the soft coulomb potential.
+
+Grid: 
+
+
+It is a uniform grid of 512 points
+size: 100 au
+
+He is using a mask function to absorb the boundaries: cos^2 mask or cos^n,
+ n can be changed based on our choice. 
+
+
+=============================================================================================================================
+========================================================================================================================
+=============================================================================================================================
+========================================================================================================================
+
+                                                   1D MCTDHF Calculations
+                                                  -----------------------
+                                                  _______________________
+
+
+----------------------------------------------------------------------------------
+First Run - Relaxation Input File
+==================================
+
+
+$parinp
+
+finalstatsfile="Dat/finalstats.dat.relax"
+
+avectoroutfile="Bin/avector.bin.relax"
+spfoutfile="Bin/spfs.bin.relax"
+
+maxaorder=2000
+maxdgdim=2000
+
+mcscfnum=1
+sparseconfigflag=1       %  you should not be using sparseconfigflag 
+                         %  with two electrons and no nuclear motion
+par_consplit=1           %  remove par_consplit, is for sparseconfigflag=1
+
+numactions=1
+actions=2
+
+
+spfugrestrict=1
+mcscfnum=1
+
+numelec=2
+
+nspf=3
+
+
+restrictflag=1
+restrictms=0
+
+mrestrictflag=1
+mrestrictval=0
+
+improvedrelaxflag=1
+improvednatflag=1
+improvedquadflag=3
+quadstarttime=30d0
+aquadstarttime=30d0
+maxexpodim=500
+
+par_timestep=0.05d0
+
+stopthresh =1d-2
+astoptol=1d0
+parorbsplit=3
+
+/
+
+
+
+
+&sinc1dparinp
+
+orblanthresh=1d-8
+orblanorder=675
+
+
+zke_paropt=0
+orbparflag=.true.
+num_skip_orbs=0
+orb_skip=-1
+
+twotype=1
+twostrength=1d0
+toepflag=0
+harmstrength=0d0
+fft_batchdim=1
+fft_circbatchdim=1
+
+orblanthresh=1d-8
+orblanorder=675
+orblancheckmod=25
+nonucrepflag=0
+debugflag=0
+
+numcenters=2
+nuccharges=2d0
+capstart=0.00d0
+
+softness=1d0
+centershift=0
+
+numpoints=512
+spacing=0.01d0
+
+
+scalingflag=0
+smoothness=5d0
+scalingdistance=1000d0
+scalingstretch=1d0
+scalingtheta=0d0
+ivoflag=0
+
+
+loadedocc=2d0
+
+orbtargetflag=0
+
+
+capflag=1
+capstart=0.001d0
+capstrength=0.01d0
+maxcap=1d20
+mincap=0d0
+capmode=1
+
+cappower=2
+fft_ct_paropt=1
+
+
+
+
+
+
+/
+
+======================================================================
+
+Output of Relaxation
+--------------------
+
+Tue Jun 27 12:12:53 CEST 2017
+  ****************************************************************************
+  **********************  BEGIN LBNL-AMO-MCTDHF ******************************
+  ****************************************************************************
+ 
+       Atomic/Diatomic/Cartesian Polyatomic nonadiabatic MCTDHF code
+   for ultrafast electronic and nuclear dynamics in intense laser fields
+              AMO Theory Group, Lawrence Berkeley Laboratory
+          D J Haxton,   K V Lawler,   J Jones,   B Abeln,   X Li
+ 
+                              VERSION 1.34 
+        Copyright 2017 the regents of the University of California
+ 
+                This is CHMCTDH: HERM-normed ECS version.
+ 
+                PROCESSOR            1  OF            1
+ 
+ Inpfile is Input.Inp.Relax 
+ 
+  *************************  COMMAND LINE OPTIONS  ***************************
+ 
+ Reading 
+ Input.Inp.Relax                                                                
+                                                                                
+                                           
+  ****************************************************************************
+ 
+ Enforcing CMF defaults for Verlet or EXPO.
+ 
+  ****************************************************************************
+ *****************************************************************************
+ 
+ Number of states in propagation=           1
+ 
+  Parameters: electronic
+ 
+                    Number of electrons     2
+ Nuclear KE flag (nonuc_checkflag):         1
+ 
+ ********  SINC DVR PARAMS ******** 
+ spacing  1.000000000000000E-002
+ numpoints         512
+ numcenters           2
+ nuccharge   2.00000000000000     
+ centershift  0.000000000000000E+000
+ nuccharge   2.00000000000000     
+ centershift  0.000000000000000E+000
+ orblanorder,orblanthresh         675  1.000000000000000E-008
+ nonucrepflag           0
+ orbparflag F
+ zke_paropt           0
+    --> fft_ct_paropt           1
+ fft_batchdim           1
+ fft_circbatchdim           1
+   -----  
+ NBOX            1
+ totpoints         512
+ **********************************
+ 
+ ************************   Parameters: config/spf    ************************  
+  
+ 
+ Doing full CI: numshells=1.  Shells:
+ Shell            1
+   1a    1b    2a    2b    3a    3b 
+ 
+    Number of unfrozen spfs:      3
+    Number of frozen spfs:        0
+            Spfs start in m=     0   0   0
+ 
+ Spfs will be restricted to their original parity values.
+ Configurations will be restricted to spin projection           0 /2
+  Configurations will be restricted to spin            0
+ 
+ ***********************    Initial state      ***********************   
+ 
+ Spfs will be one-electron eigfuncts.
+ 
+ Spf Quad flag is ON (quadflag>1).  Start time    30.0000000000000     
+ Improvednatflag is ON.
+ 
+ Avector Quad flag is ON (quadflag=1,3).
+ Avector will be obtained from diagonalization.
+ 
+ ***********************    Parameters: propagation    ***********************  
+  
+ 
+  PAR_TIMESTEP IS   5.000000000000000E-002  LITTLESTEPS IS            1
+   prepropflag is            1  postpropflag is            2
+   step_flag is            2
+ 
+ Calculation will be stopped with threshold   1.000000000000000E-002 
+ ; timestep is   5.000000000000000E-002
+ 
+ 
+ *******  USING POLYNOMIAL MEAN FIELDS/MAGNUS A-VECTOR PREDICTOR/CORRECTOR   ***
+ ****  
+ 
+     Will use sparse configuration routines.
+    Explicit sparse matrix, sparseopt=1
+    Vectors are not distributed, par_consplit=0
+           Lanczosorder is          300
+           Lanthresh is      1.000000000000000E-009
+           Aorder is                300
+           Maxaorder is            2000
+           Aerror is         1.000000000000000E-009
+  Jacobian options:
+     Jacprojorth=           0
+     Jacsymflag=           0
+  Using EXPONENTIAL integration.
+     Expotol    =  1.000000000000000E-009
+     Maxexpodim=         500
+ 
+ Density matrix regularized with denreg= 0.100E-09
+ 
+ 
+ ****************************************************************************
+ 
+  Autotimestep=    1.00000000000000     
+  Numpropsteps=       800000
+ 
+ *****************************************************************************
+ 
+ 
+ ACTIONS:  Save nat          
+ 
+  Get ORbsets.  Fewer procs than orbitals.
+ 
+ ************************************
+ ********  MAIN WALKS  **************
+ ************************************
+ 
+ Go fast_newconfiglist
+ Excitations per shell
+         4         4         6
+ Orbital ranges for each electron ::
+           1           3
+           1           3
+ 
+ 
+ FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            9
+ 
+ NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           6           2
+ Go fast_newconfiglist.  Allocating...
+    Allocated.  getting configurations.
+ Excitations per shell
+         4         4         6
+ 
+ BOTWALKS /TOPWALKS           9
+           1           9           9
+ 
+      ...Done fast_newconfiglist
+ Counting walks. Singles
+ Counting walks. Doubles
+ 
+ Maximum number of
+            single walks=            54
+            double walks=            81
+             total walks=           135
+ TOTAL walks:                       135
+ maxwalks*nprocs:                   135
+ 
+ Allocating singlewalks
+ Allocating doublewalks
+      ..done walkalloc.
+ Calculating walks.  Singles...
+ Calculating walks.  Doubles...
+ Sorting walks...
+     .... done sorting walks.
+ Counting single hops...
+ Counting double hops...
+ Getting single hops...
+ Getting double hops...
+ GOT HOPS:  
+  Single hops this processor           45  of           54
+  Double hops this processor           81  of           81
+  Single hops total                     45  of                     54
+  Double hops total                     81  of                     81
+     Max single hops            5
+     Max double hops            9
+ 
+ Allocating more arrays for Slater determinants...
+      .. OK allocating.
+ Deallocating walks arrays.
+ Go spinwalk init. 
+ Go get numspinwalks.
+ Doing spin projector.
+ Maximum number of spin walks=            1
+ Avg number of spin walks=   0.666666666666667     
+ Done spinwalk init.
+ Calculating spin walks.
+      ... done calculating spin walks.
+    ... go spinsets ...
+ Numspinsets this processor is            6   maxspinset size is            2
+ Getting Spinset Projectors.  Numspinsets this process is            6
+                                        maxspinsetsize is            2
+ ...done.  Eliminated            0  sets with total rank            0
+ 
+ This processor: 
+       spin sets                   6
+       spin rank                       6  of            9
+       botspin,topspin:                1           6
+       df spin rank                    6  of            9
+       botdfspin,topdfspin:            1           6
+ All processors:
+       spin rank, S^2 =   0.000000000000000E+000  is            6  out of 
+           9
+       df spin rank                    6  of            9
+ 
+ 
+ ************************************
+ **        BIORTHO WALKS           **
+ ************************************
+ 
+ Go fast_newconfiglist
+ Excitations per shell
+         4         4         6
+ Orbital ranges for each electron ::
+           1           3
+           1           3
+ 
+ 
+ FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            9
+ 
+ NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           6           2
+ Go fast_newconfiglist.  Allocating...
+    Allocated.  getting configurations.
+ Excitations per shell
+         4         4         6
+ 
+ BOTWALKS /TOPWALKS           9
+           1           9           9
+ 
+      ...Done fast_newconfiglist
+ Counting walks. Singles
+ Counting walks. Doubles
+ 
+ Maximum number of
+            single walks=            54
+            double walks=             0
+             total walks=            54
+ TOTAL walks:                        54
+ maxwalks*nprocs:                    54
+ 
+ Allocating singlewalks
+ Allocating doublewalks
+      ..done walkalloc.
+ Calculating walks.  Singles...
+ Calculating walks.  Doubles...
+ Sorting walks...
+     .... done sorting walks.
+ Counting single hops...
+ Counting double hops...
+ Getting single hops...
+ Getting double hops...
+ GOT HOPS:  
+  Single hops this processor           45  of           54
+  Double hops this processor            0  of            0
+  Single hops total                     45  of                     54
+  Double hops total                      0  of                      0
+     Max single hops            5
+     Max double hops            1
+ 
+ Allocating more arrays for Slater determinants...
+      .. OK allocating.
+ Deallocating walks arrays.
+ Go spinwalk init. 
+ Go get numspinwalks.
+ Doing spin projector.
+ Maximum number of spin walks=            1
+ Avg number of spin walks=   0.666666666666667     
+ Done spinwalk init.
+ Calculating spin walks.
+      ... done calculating spin walks.
+    ... go spinsets ...
+ Numspinsets this processor is            6   maxspinset size is            2
+ Getting Spinset Projectors.  Numspinsets this process is            6
+                                        maxspinsetsize is            2
+ ...done.  Eliminated            0  sets with total rank            0
+ 
+ This processor: 
+       spin sets                   6
+       spin rank                       6  of            9
+       botspin,topspin:                1           6
+       df spin rank                    6  of            9
+       botdfspin,topdfspin:            1           6
+ All processors:
+       spin rank, S^2 =   0.000000000000000E+000  is            6  out of 
+           9
+       df spin rank                    6  of            9
+ 
+ 
+ ************************************
+ ********** DONE WALKS. *************
+ ************************************
+ 
+      DWWPTR Spin-adapted configurations by processor
+          1      1                   9
+ 
+ Calling init_project                  8192
+ CALL BLOCK LAN FOR ORBS,            3  VECTORS F
+ FIRST ERR 0.2E+09 0.2E+09 0.2E+09
+ MAX ERROR :    170296374.608787       1.000000000000000E-008
+ FIRST ALPHA  (15260.1806643127,-21294.4537059538)
+ ENERGIES    801.165935856061  -718.912822815435  1864.160656699694-63571.198974691950  2710.941834782471 -5281.178781354793
+ ENERGIES    353.514713069823  -393.633696217204   988.286946070154  -937.600937688166  1247.327575052756 -4247.975904007210
+ ENERGIES    228.230544471548  -278.106160777910   658.953479899401 -1843.539300363495   721.683002738037 -4719.102690027565
+ ENERGIES    169.395900873631   -82.828011689251   204.034874700212  -449.184303652839   372.449177284912 -1749.758516805452
+ ENERGIES     81.443681760213   -68.443065105050   200.515338252152  -258.723800539591   362.455413291619 -1684.765419619990
+ ENERGIES     45.198670980259   -61.914422659949   222.317061889268  -197.323327806780   302.010439827381  -990.534783374551
+ ENERGIES     44.372338557190   -51.466910878972   151.406073148158  -255.654510604844   234.933932376040  -195.733140541975
+ ENERGIES     43.607659666492   -49.999175977517   134.145154540488  -162.890388492903   225.080800413998  -246.991323933833
+ ENERGIES     44.018830506862   -50.027540026693   141.473981595114  -150.565154474679   246.722605363141  -251.072847045113
+ ENERGIES     44.015290307791   -49.987628277694   143.949323164542  -149.927920484528   245.128008425660  -250.734810264184
+ ENERGIES     44.014993984208   -49.985165819512   144.043732731784  -149.956380474185   244.081913978618  -249.957438801560
+ ENERGIES     44.015001102627   -49.985151195350   144.044995828889  -149.955751891698   244.074952921806  -249.927015791871
+ ENERGIES     44.015001117438   -49.985151186862   144.044999043065  -149.955749306530   244.074984320892  -249.926934677879
+ ENERGIES     44.015001117440   -49.985151186996   144.044999043231  -149.955749306138   244.074984334638  -249.926934665834
+ ENERGIES     44.015001117260   -49.985151186875   144.044999043267  -149.955749306125   244.074984334544  -249.926934665790
+    checking convergence. 0.21699E-09 0.10000E-08       375
+   ERRORS  0.51E-08 0.35E-08 0.18E-07
+ Not converged  1.832012299301307E-008  1.000000000000000E-008
+ ENERGIES     44.015001117414   -49.985151187071   144.044999043252  -149.955749306239   244.074984334524  -249.926934665787
+    checking convergence. 0.24975E-09 0.10000E-08       400
+   ERRORS  0.17E-08 0.23E-08 0.12E-07
+ Not converged  1.170755625166274E-008  1.000000000000000E-008
+ ENERGIES     44.015001117535   -49.985151187018   144.044999043256  -149.955749306211   244.074984334610  -249.926934665814
+    checking convergence. 0.13263E-09 0.10000E-08       425
+   ERRORS  0.22E-08 0.23E-08 0.12E-07
+ Not converged  1.178751631900733E-008  1.000000000000000E-008
+ ENERGIES     44.015001117472   -49.985151186801   144.044999043270  -149.955749306201   244.074984334714  -249.926934665894
+    checking convergence. 0.22544E-09 0.10000E-08       450
+   ERRORS  0.55E-08 0.60E-08 0.66E-08
+ Converged.   6.565812583292409E-009  1.000000000000000E-008
+ BL CALLED. ENERGIES: 
+           1 (44.0150011174716,-49.9851511868015)
+           2 (144.044999043270,-149.955749306201)
+           3 (244.074984334714,-249.926934665894)
+ 
+    ....Called init_project.
+ Not enough avectors loaded! will diagonalize.
+ FIRST ERR 0.1E+05
+ MAX ERROR :    14533.3392851592       1.000000000000000E-009
+ FIRST ALPHA  (259.578356579378,-318.994594195738)
+ Max iters            6  reached, setting converged flag to 2
+ ENERGIES     88.527502953631   -99.972728830967
+    checking convergence. 0.10000E+11 0.10000E-09         6
+   ERRORS  0.20E-10
+ Converged.   1.994677604621876E-011  1.000000000000000E-009
+ REPLACING SPFS - DENMAT EIGS
+         0.1999999999E+01
+         0.5776823717E-09
+         0.5280926312E-13
+ 
+ FIRST ERR 0.2E-09
+ Vectors converged on read  2.370036570839763E-010  1.000000000000000E-009
+ FIRST ALPHA  (88.5275029536350,-99.9727288309674)
+ Converged.   2.370036570839763E-010  1.000000000000000E-009
+ IN PROP: VECTOR NORM  (1.00000000000000,5.525267614007362E-018)
+          ENERGY  (88.5275029536350,-99.9727288309674)
+ REPLACING SPFS - DENMAT EIGS
+         0.1999999999E+01
+         0.5776822777E-09
+         0.5280926312E-13
+ 
+ Max iters            6  reached, setting converged flag to 2
+T=          0.05000  Energy:   0.8852750273E+02 -0.9997275194E+02    Norm:   0.1000000000E+01
+    STOPTEST : ORBITALS   0.46E-01  0.10E-01  AVECTOR   0.18E+05  0.10E+01
+ REPLACING SPFS - DENMAT EIGS
+         0.1999999999E+01
+         0.5888686405E-09
+         0.5281070973E-13
+ 
+ Max iters            6  reached, setting converged flag to 2
+T=          0.10000  Energy:   0.8852750272E+02 -0.9997275194E+02    Norm:   0.1000000000E+01
+    STOPTEST : ORBITALS   0.67E-02  0.10E-01  AVECTOR   0.85E-07  0.10E+01
+ 
+    ***  CONVERGED *** 
+ 
+         88.527502721350    -99.972751938046     -0.000000004239     -0.000000000132
+    ***   
+ 
+    ...done prop...
+   ...saving vector...
+   ... go save vectors...gather orbitals...
+   ... gathered orbs, now write
+   ... gathered orbs, alloc avector...
+   ... now gather avector...
+   ... ok, now write avector
+    ...saved vectors!
+    ...end prop...
+    ...getting state expectation values etcetera...
+    ...GO finalstats.
+Tue Jun 27 12:13:19 CEST 2017
+    ...END MCTDHF
+ MCTDHF STOP!
+
+
+
+
+
+
+
+
+
+
+
+=======================================================================
+
+Then, we will put Eg in the input file of the laser pulse Input.pulse
+the energy has two components: one real and one imaginary
+----------------------------------------------------------
+
+
+Eg = sqrt [(real_part)^2 + (imaginary_part)^2]
+
+Eg = sqrt [(88.527502721350^2) + (-99.972751938046^2)] = 
+ans =   0.00000 + 46.44817i
+
+Them we will take only the first number
+
+then, Eg = 88.527502721350 a.u.
+
+=======================================================================
+
+Pulse input file
+---------------
+
+$pulse
+
+ pulsetype=2
+
+
+ omega2=0.0569d0
+ omega= 0.0281449963d0
+ phaseshift=0d0
+
+
+
+ intensity=2.849451309d-3
+
+ velflag=0
+
+
+
+/
+
+
+$parinp
+
+eground = 88.527502721350d0
+
+nonuc_checkflag=1
+
+numactions=4
+actions=1,15,21,27
+
+autotimestep=1d0
+autostart = -999
+dipmodtime=1
+diptime=100
+fluxskipmult=1
+fluxinterval=20
+computeflux=500
+
+tdflag=1
+loadavectorflag=1
+avectorfile="Bin/avector.bin.relax"
+loadspfflag=1
+spffile="Bin/spfs.bin.relax"
+
+saveflag=0
+
+sparseconfigflag=0
+
+numelec=2
+
+nspf=3
+
+
+
+
+
+
+
+
+
+
+restrictflag=1
+restrictms=0
+
+mrestrictflag=1
+mrestrictval=0
+
+
+
+par_timestep=0.05d0
+littlesteps=1
+
+/
+
+
+&sinc1dparinp
+
+orblanthresh=1d-8
+orblanorder=675
+
+
+zke_paropt=0
+orbparflag=.true.
+num_skip_orbs=0
+orb_skip=-1
+
+twotype=1
+twostrength=1d0
+toepflag=0
+harmstrength=0d0
+fft_batchdim=1
+fft_circbatchdim=1
+
+orblanthresh=1d-8
+orblanorder=675
+orblancheckmod=25
+nonucrepflag=0
+debugflag=0
+
+numcenters=2
+nuccharges=2d0
+capstart=0.00d0
+
+softness=1d0
+centershift=0
+
+numpoints=512
+spacing=0.01d0
+
+
+scalingflag=0
+smoothness=5d0
+scalingdistance=1000d0
+scalingstretch=1d0
+scalingtheta=0d0
+ivoflag=0
+
+
+loadedocc=2d0
+
+orbtargetflag=0
+
+
+capflag=1
+capstart=0.001d0
+capstrength=0.01d0
+maxcap=1d20
+mincap=0d0
+capmode=1
+
+cappower=2
+fft_ct_paropt=1
+
+
+
+
+
+
+
+
+
+/
+
+====================================================================
+
+Pulse output
+------------
+
+
+

@@ -1,0 +1,346 @@
+ 
+Sat Jul  8 00:26:34 PDT 2017
+  ****************************************************************************
+  **********************  BEGIN LBNL-AMO-MCTDHF ******************************
+  ****************************************************************************
+ 
+       Atomic/Diatomic/Cartesian Polyatomic nonadiabatic MCTDHF code
+   for ultrafast electronic and nuclear dynamics in intense laser fields
+              AMO Theory Group, Lawrence Berkeley Laboratory
+          D J Haxton,   K V Lawler,   J Jones,   B Abeln,   X Li
+ 
+                              VERSION 1.35 
+        Copyright 2017 the regents of the University of California
+ 
+                This is CHMCTDH: HERM-normed ECS version.
+ 
+                PROCESSOR            1  OF            1
+ 
+ Inpfile is Input.Inp.Linh2 
+ 
+  *************************  COMMAND LINE OPTIONS  ***************************
+ 
+ Reading 
+ Input.Inp.Linh2                                                                
+                                                                                
+                                           
+  ****************************************************************************
+ 
+ Enforcing CMF defaults for Verlet or EXPO.
+ 
+  ****************************************************************************
+ *****************************************************************************
+ 
+ Number of states in propagation=           1
+ 
+  Parameters: electronic
+ 
+                    Number of electrons     2
+ Nuclear KE flag (nonuc_checkflag):         1
+ 
+ ********  SINC DVR PARAMS ******** 
+ spacing  0.100000000000000     
+ numpoints        1024
+ ********  HAMILTONIAN PARAMS ******** 
+ numcenters           2
+   nuccharge   1.00000000000000     
+   radius     0.000000000000000E+000
+   nuccharge   1.00000000000000     
+   radius     0.000000000000000E+000
+ twostrength  0.000000000000000E+000
+ nucstrength   1.00000000000000     
+ potential two-body interaction, twotype.ne.0
+   softness  0.200000000000000     
+ linear potential
+ ********  OTHER PARAMS ********** 
+ orblanorder,orblanthresh        1024   1.00000000000000     
+ nonucrepflag           0
+ orbparflag F
+ zke_paropt           1
+    --> fft_ct_paropt           1
+ fft_batchdim           1
+ fft_circbatchdim           1
+   -----  
+ NBOX            1
+ totpoints        1024
+ **********************************
+ 
+ ************************   Parameters: config/spf    ************************  
+  
+ 
+ Doing full CI: numshells=1.  Shells:
+ Shell            1
+   1a    1b 
+ 
+    Number of unfrozen spfs:      1
+    Number of frozen spfs:        0
+            Spfs start in m=     0
+ 
+ Configurations will be restricted to spin projection           0 /2
+  Configurations will be restricted to spin            0
+ 
+ ***********************    Initial state      ***********************   
+ 
+ Spfs will be one-electron eigfuncts.
+ 
+ Sfp Quad flag is OFF.
+ Improvednatflag is ON.
+ 
+ Avector Quad flag is OFF.
+ Avector will be obtained from diagonalization.
+ 
+ ***********************    Parameters: propagation    ***********************  
+  
+ 
+  PAR_TIMESTEP IS   0.500000000000000       LITTLESTEPS IS            1
+   prepropflag is            1  postpropflag is            2
+   step_flag is            2
+ 
+ Calculation will be stopped with threshold   1.000000000000000E-005 
+ ; timestep is   0.500000000000000     
+ 
+ 
+ *******  USING POLYNOMIAL MEAN FIELDS/MAGNUS A-VECTOR PREDICTOR/CORRECTOR   ***
+ ****  
+ 
+     Using nonsparse configuration routines.
+  Jacobian options:
+     Jacprojorth=           0
+     Jacsymflag=           0
+  Using EXPONENTIAL integration.
+     Expotol    =  1.000000000000000E-009
+     Maxexpodim=         300
+ 
+ Density matrix regularized with denreg= 0.100E-09
+ 
+ 
+ ****************************************************************************
+ 
+  Autotimestep=    1.00000000000000     
+  Numpropsteps=        80000
+ 
+ *****************************************************************************
+ 
+ 
+ 
+ 
+ ************************************
+ ********  MAIN WALKS  **************
+ ************************************
+ 
+ Go fast_newconfiglist
+ Excitations per shell
+         0         0         2
+ Orbital ranges for each electron ::
+           1           1
+           1           1
+ 
+ 
+ FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            1
+ 
+ NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           1           1
+ Go fast_newconfiglist.  Allocating...
+    Allocated.  getting configurations.
+ Excitations per shell
+         0         0         2
+ 
+ BOTWALKS /TOPWALKS           1
+           1           1           1
+ 
+      ...Done fast_newconfiglist
+ Counting walks. Singles
+ Counting walks. Doubles
+ 
+ Maximum number of
+            single walks=             2
+            double walks=             1
+             total walks=             3
+ TOTAL walks:                         3
+ 
+ Allocating singlewalks
+ Allocating doublewalks
+      ..done walkalloc.
+ Calculating walks.  Singles...
+ Calculating walks.  Doubles...
+ Sorting walks...
+     .... done sorting walks.
+ Counting single hops...
+ Counting double hops...
+ Getting single hops...
+ Getting double hops...
+ GOT HOPS:  
+  Single hops this processor            1  of            2
+  Double hops this processor            1  of            1
+  Single hops total                      1  of                      2
+  Double hops total                      1  of                      1
+     Max single hops            1
+     Max double hops            1
+ 
+ Allocating more arrays for Slater determinants...
+      .. OK allocating.
+ Deallocating walks arrays.
+ Go spinwalk init. 
+ Go get numspinwalks.
+ Doing spin projector.
+ Maximum number of spin walks=            0
+ Avg number of spin walks=   0.000000000000000E+000
+ Done spinwalk init.
+ Calculating spin walks.
+      ... done calculating spin walks.
+    ... go spinsets ...
+ Numspinsets this processor is            1   maxspinset size is            1
+ Getting Spinset Projectors.  Numspinsets this process is            1
+                                        maxspinsetsize is            1
+ ...done.  Eliminated            0  sets with total rank            0
+ 
+ This processor: 
+       spin sets                   1
+       spin rank                       1  of            1
+       botspin,topspin:                1           1
+       df spin rank                    1  of            1
+       botdfspin,topdfspin:            1           1
+ All processors:
+       spin rank, S^2 =   0.000000000000000E+000  is            1  out of 
+           1
+       df spin rank                    1  of            1
+ 
+ 
+ ************************************
+ **        BIORTHO WALKS           **
+ ************************************
+ 
+ Go fast_newconfiglist
+ Excitations per shell
+         0         0         2
+ Orbital ranges for each electron ::
+           1           1
+           1           1
+ 
+ 
+ FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            1
+ 
+ NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           1           1
+ Go fast_newconfiglist.  Allocating...
+    Allocated.  getting configurations.
+ Excitations per shell
+         0         0         2
+ 
+ BOTWALKS /TOPWALKS           1
+           1           1           1
+ 
+      ...Done fast_newconfiglist
+ Counting walks. Singles
+ Counting walks. Doubles
+ 
+ Maximum number of
+            single walks=             2
+            double walks=             0
+             total walks=             2
+ TOTAL walks:                         2
+ 
+ Allocating singlewalks
+ Allocating doublewalks
+      ..done walkalloc.
+ Calculating walks.  Singles...
+ Calculating walks.  Doubles...
+ Sorting walks...
+     .... done sorting walks.
+ Counting single hops...
+ Counting double hops...
+ Getting single hops...
+ Getting double hops...
+ GOT HOPS:  
+  Single hops this processor            1  of            2
+  Double hops this processor            0  of            0
+  Single hops total                      1  of                      2
+  Double hops total                      0  of                      0
+     Max single hops            1
+     Max double hops            1
+ 
+ Allocating more arrays for Slater determinants...
+      .. OK allocating.
+ Deallocating walks arrays.
+ Go spinwalk init. 
+ Go get numspinwalks.
+ Doing spin projector.
+ Maximum number of spin walks=            0
+ Avg number of spin walks=   0.000000000000000E+000
+ Done spinwalk init.
+ Calculating spin walks.
+      ... done calculating spin walks.
+    ... go spinsets ...
+ Numspinsets this processor is            1   maxspinset size is            1
+ Getting Spinset Projectors.  Numspinsets this process is            1
+                                        maxspinsetsize is            1
+ ...done.  Eliminated            0  sets with total rank            0
+ 
+ This processor: 
+       spin sets                   1
+       spin rank                       1  of            1
+       botspin,topspin:                1           1
+       df spin rank                    1  of            1
+       botdfspin,topdfspin:            1           1
+ All processors:
+       spin rank, S^2 =   0.000000000000000E+000  is            1  out of 
+           1
+       df spin rank                    1  of            1
+ 
+ 
+ ************************************
+ ********** DONE WALKS. *************
+ ************************************
+ 
+      DWWPTR Spin-adapted configurations by processor
+          1      1                   1
+ 
+ Calling init_project                 16384
+ Exact Diagonalization with vector size         1024
+ DIRECT DIAG CALLED. ENERGIES: 
+           1 (0.668057189800074,-4.224209651511951E-014)
+           2 (1.67601685519547,1.335241557870739E-015)
+           3 (2.40096103987541,-3.889221816111447E-014)
+           4 (3.05867035314224,7.689250579343826E-015)
+           5 (3.64190910084861,-5.517384083477300E-014)
+           6 (4.19303516337146,-2.841917506598912E-014)
+           7 (4.70485294570893,-1.752661220271528E-014)
+           8 (5.19637771208524,-1.004578371569847E-014)
+ 
+    ....Called init_project.
+ Not enough avectors loaded! will diagonalize.
+ Construct big matrix:             1
+  Call eig            1
+   -- Nonsparse eigenvals --
+     (1.33611437960036,-2.859530561492259E-027)
+ REPLACING SPFS - DENMAT EIGS
+         0.2000000000E+01
+ 
+ Construct big matrix:             1
+  Call eig            1
+   -- Nonsparse eigenvals --
+     (1.33611437960037,-2.222373092063221E-027)
+ IN PROP: VECTOR NORM  (1.00000000000000,0.000000000000000E+000)
+          ENERGY  (1.33611437960037,-2.222373092063221E-027)
+ REPLACING SPFS - DENMAT EIGS
+         0.2000000000E+01
+ 
+T=          0.50000  Energy:   0.1336114380E+01 -0.2564790315E-26    Norm:   0.1000000000E+01
+    STOPTEST : ORBITALS   0.26E-12  0.10E-04  AVECTOR   0.20E+04  0.10E+01
+             Orbitals Converged, Avector not necessarily converged 
+ REPLACING SPFS - DENMAT EIGS
+         0.2000000000E+01
+ 
+T=          1.00000  Energy:   0.1336114380E+01 -0.2615466211E-26    Norm:   0.1000000000E+01
+    STOPTEST : ORBITALS   0.14E-12  0.10E-04  AVECTOR   0.75E-14  0.10E+01
+ 
+    ***  CONVERGED *** 
+ 
+          1.336114379600     -0.000000000000      0.000000000000     -0.000000000000
+    ***   
+ 
+    ...done prop...
+    ...end prop...
+    ...getting state expectation values etcetera...
+    ...GO finalstats.
+Sat Jul  8 00:26:37 PDT 2017
+    ...END MCTDHF
+ MCTDHF STOP!

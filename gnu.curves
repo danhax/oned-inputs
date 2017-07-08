@@ -1,0 +1,33 @@
+#!/bin/bash
+
+echo '
+
+set key bottom right
+
+set style data lines
+
+set title "1D H2 with sech^2 potentials"
+
+set xlabel "X (a_0)"
+set ylabel "Born Oppenheimer interaction energy (hartree) \n energy minus noninteracting asymptote"
+
+set yrange [*:2]
+
+plot "h2.dat" using ($1/10):($2 + 1) title "H2 energy (hartree) + 1" lw 4
+
+replot "h2plus.dat" using ($1/10):($2 + 0.5) title "H2+ energy (hartree) + 0.5" lw 4
+
+replot "heh.dat" using ($1/10):($2 + 4.5) title "HeH energy (hartree) + 4.5" lw 4
+
+replot "he2.dat" using ($1/10):($2 + 8) title "He2 energy (hartree) + 8" lw 4
+
+replot "hehplus.dat" using ($1/10):($2 + 4) title "HeH+ energy (hartree) + 4" lw 4
+
+replot "he2plus.dat" using ($1/10):($2 + 6) title "He2+ energy (hartree) + 6" lw 4
+
+set out "sechsq_1dh2.eps"
+set term post eps enhanced solid color 24
+replot
+
+' |gnuplot -persist
+

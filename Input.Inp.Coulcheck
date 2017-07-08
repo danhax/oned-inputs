@@ -1,0 +1,76 @@
+
+$parinp
+
+mcscfnum=1
+numelec=1
+restrictms=1
+nspf=1
+
+saveflag=0
+
+sparseconfigflag=0
+
+restrictflag=1
+
+improvedrelaxflag=1
+improvednatflag=1
+
+par_timestep=0.5d0
+
+stopthresh = 1d-5
+astoptol=1d0
+parorbsplit=0
+
+/
+
+
+
+
+&sinc1dparinp
+
+coulmode=0
+coulmode=1
+
+debugflag=0
+debugflag=90210
+num_skip_orbs=7
+
+twomode=1
+
+   nucstrength=0d0
+   twostrength=0d0
+
+twotype=1
+harmstrength=0d0
+
+orblanthresh=1d0
+orblanorder=1024
+orblancheckmod=200
+
+orbparflag=.false.
+toepflag=0
+
+numcenters=2
+centershift(1:2) = -120,120
+centershift(1:2) = 0,0
+
+numcenters=2
+nuccharges(1:2)   = 1d0, 1d0
+numcenters=1
+nuccharges(1:2)   = 2d0, 0d0
+
+numpoints=1024
+
+spacing   = 0.01d0
+softness  = 0.02d0
+
+capflag=1
+capstart=30d0
+capstrength=0.01d0
+
+cappower=2
+maxcap=100d0
+
+
+/
+

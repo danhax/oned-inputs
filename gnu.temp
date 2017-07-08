@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo '
+
+set style data linespoints
+
+# set logscale x
+
+sechsq(fac,x) = ( 2 / (exp(fac*x) + exp(-fac*x)))**(2)
+
+# plot "h2x.dat" using ($1/10):2, -1-3*sechsq(sqrt(2.0),x)
+
+plot "h2x.dat" using ($1/10):($2+3*sechsq(sqrt(1.0),$1/10) + 1) title "h2 + 1 hartree"
+replot "h2plusx.dat" using ($1/10):($2+3*sechsq(sqrt(1.0),$1/10) + 0.5) title "h2+ + 0.5 hartree"
+
+' |gnuplot -persist
