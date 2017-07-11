@@ -2,7 +2,7 @@
 
 echo '
 
-set style data linespoints
+set style data lines
 
 # set xrange [0:4]
 
@@ -11,19 +11,19 @@ set title "1D H2 with linear potential, softness = 0.2 a_0"
 set xlabel "X (a_0)"
 set ylabel "Born Oppenheimer energy (hartree) "
 
-# set yrange [*:2]
+set yrange [*:3]
 
-plot "lin.dat" using ($1/10):($2) title "H2 energy (hartree)" lw 4 pt 7 ps 2
+plot "lin.dat" using ($1/10):($2) title "H2 energy (hartree)" lw 4 
 
-replot "linplus.dat" using ($1/10):($2) title "H2+ energy" lw 6 pt 7 ps 2
+replot "linplus.dat" using ($1/10):($2) title "H2+ energy" lw 6 
 
-replot "linplus.dat" using ($1/10):($6) title "H2+ energy 2" lw 4 pt 7 ps 2
+replot "linplus.dat" using ($1/10):($6) title "H2+ energy 2" lw 4 
 
-replot "linminus.dat" using ($1/10):($2) title "H2- energy" lw 2 pt 7 ps 1
+replot "linminus.dat" using ($1/10):($2) title "H2- energy" lw 2
 
-replot "linheh.dat" using ($1/10):($2) title "HeH energy" lw 4 pt 7 ps 2
+replot "linheh.dat" using ($1/10):($2) title "HeH energy" lw 4 
 
-replot "linhe2.dat" using ($1/10):($2) title "He2 energy" lw 4 pt 7 ps 2
+replot "linhe2.dat" using ($1/10):($2) title "He2 energy" lw 4 
 
 
 set out "lin_1dh2.eps"

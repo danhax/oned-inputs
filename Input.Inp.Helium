@@ -27,7 +27,6 @@ parorbsplit=0
 &sinc1dparinp
 
 twotype=1
-harmstrength=0d0
 
    twostrength=1d0
    nucstrength=0d0

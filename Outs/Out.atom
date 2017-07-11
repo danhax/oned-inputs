@@ -1,4 +1,4 @@
-Mon Jul 10 22:51:50 PDT 2017
+Tue Jul 11 06:57:07 PDT 2017
   ****************************************************************************
   **********************  BEGIN LBNL-AMO-MCTDHF ******************************
   ****************************************************************************
@@ -15,11 +15,11 @@ Mon Jul 10 22:51:50 PDT 2017
 
                 PROCESSOR            1  OF            1
 
- Inpfile is Input.Inp.Coulcheck 
+ Inpfile is Input.Inp.Atom 
 
   *************************  COMMAND LINE OPTIONS  ***************************
 
- Reading Input.Inp.Coulcheck                                                                                                                                                                                     
+ Reading Input.Inp.Atom                                                                                                                                                                                          
   ****************************************************************************
 
  Enforcing CMF defaults for Verlet or EXPO.
@@ -31,23 +31,26 @@ Mon Jul 10 22:51:50 PDT 2017
 
   Parameters: electronic
 
-                    Number of electrons     1
+                    Number of electrons     2
  Nuclear KE flag (nonuc_checkflag):         1
 
  ********  SINC DVR PARAMS ******** 
- spacing   1.0000000000000000E-002
+ spacing  0.10000000000000001     
  numpoints        1024
  ********  HAMILTONIAN PARAMS ******** 
- numcenters           1
-   nuccharge   2.0000000000000000     
+ numcenters           2
+   nuccharge   1.0000000000000000     
+   radius      0.0000000000000000     
+   nuccharge   1.0000000000000000     
    radius      0.0000000000000000     
  twostrength   0.0000000000000000     
  nucstrength   0.0000000000000000     
  potential two-body interaction, twotype.ne.0
    SOFTNESS    1.0000000000000000     
- soft coulomb potential, twomode==1
+ sech^2 potential, twomode==0
+    half-integer even parity
  ********  OTHER PARAMS ********** 
- orblanorder,orblanthresh        1024   1.0000000000000000     
+ orblanorder,orblanthresh         300   1.0000000000000000     
  nonucrepflag           0
  orbparflag F
  zke_paropt           1
@@ -63,14 +66,14 @@ Mon Jul 10 22:51:50 PDT 2017
 
  Doing full CI: numshells=1.  Shells:
  Shell            1
-   1a    1b 
+   1a    1b    2a    2b 
 
-    Number of unfrozen spfs:      1
+    Number of unfrozen spfs:      2
     Number of frozen spfs:        0
-            Spfs start in m=     0
+            Spfs start in m=     0   0
 
- Configurations will be restricted to spin projection           1 /2
-  Configurations will be restricted to spin            1
+ Configurations will be restricted to spin projection           0 /2
+  Configurations will be restricted to spin            0
 
  ***********************    Initial state      ***********************   
 
@@ -113,6 +116,7 @@ Mon Jul 10 22:51:50 PDT 2017
 
 
 
+  Get ORbsets.  Fewer procs than orbitals.
 
  ************************************
  ********  MAIN WALKS  **************
@@ -120,31 +124,32 @@ Mon Jul 10 22:51:50 PDT 2017
 
  Go fast_newconfiglist
  Excitations per shell
-         1         1         2
+         2         2         4
  Orbital ranges for each electron ::
-           1           1
+           1           2
+           1           2
 
 
- FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            1
+ FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            4
 
- NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           1           1
+ NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           3           2
  Go fast_newconfiglist.  Allocating...
     Allocated.  getting configurations.
  Excitations per shell
-         1         1         2
+         2         2         4
 
- BOTWALKS /TOPWALKS           1
-           1           1           1
+ BOTWALKS /TOPWALKS           4
+           1           4           4
 
       ...Done fast_newconfiglist
  Counting walks. Singles
  Counting walks. Doubles
 
  Maximum number of
-            single walks=             1
-            double walks=             0
-             total walks=             1
- TOTAL walks:                        1
+            single walks=            16
+            double walks=            16
+             total walks=            32
+ TOTAL walks:                       32
 
  Allocating singlewalks
  Allocating doublewalks
@@ -158,12 +163,12 @@ Mon Jul 10 22:51:50 PDT 2017
  Getting single hops...
  Getting double hops...
  GOT HOPS:  
-  Single hops this processor            1  of            1
-  Double hops this processor            0  of            0
-  Single hops total                     1  of                     1
-  Double hops total                     0  of                     0
-     Max single hops            1
-     Max double hops            1
+  Single hops this processor           12  of           16
+  Double hops this processor           16  of           16
+  Single hops total                    12  of                    16
+  Double hops total                    16  of                    16
+     Max single hops            3
+     Max double hops            4
 
  Allocating more arrays for Slater determinants...
       .. OK allocating.
@@ -171,26 +176,26 @@ Mon Jul 10 22:51:50 PDT 2017
  Go spinwalk init. 
  Go get numspinwalks.
  Doing spin projector.
- Maximum number of spin walks=            0
- Avg number of spin walks=    0.0000000000000000     
+ Maximum number of spin walks=            1
+ Avg number of spin walks=   0.50000000000000000     
  Done spinwalk init.
  Calculating spin walks.
       ... done calculating spin walks.
     ... go spinsets ...
- Numspinsets this processor is            1   maxspinset size is            1
- Getting Spinset Projectors.  Numspinsets this process is            1
-                                        maxspinsetsize is            1
+ Numspinsets this processor is            3   maxspinset size is            2
+ Getting Spinset Projectors.  Numspinsets this process is            3
+                                        maxspinsetsize is            2
  ...done.  Eliminated            0  sets with total rank            0
 
  This processor: 
-       spin sets                   1
-       spin rank                       1  of            1
-       botspin,topspin:                1           1
-       df spin rank                    1  of            1
-       botdfspin,topdfspin:            1           1
+       spin sets                   3
+       spin rank                       3  of            4
+       botspin,topspin:                1           3
+       df spin rank                    3  of            4
+       botdfspin,topdfspin:            1           3
  All processors:
-       spin rank, S^2 =   0.75000000000000000       is            1  out of            1
-       df spin rank                    1  of            1
+       spin rank, S^2 =    0.0000000000000000       is            3  out of            4
+       df spin rank                    3  of            4
 
 
  ************************************
@@ -199,31 +204,32 @@ Mon Jul 10 22:51:50 PDT 2017
 
  Go fast_newconfiglist
  Excitations per shell
-         1         1         2
+         2         2         4
  Orbital ranges for each electron ::
-           1           1
+           1           2
+           1           2
 
 
- FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            1
+ FASTNEWCONFIG: NUMBER OF CONFIGURATIONS            4
 
- NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           1           1
+ NUMSPINBLOCKS, MAXSPINBLOCKSIZE FASTCONFIG           3           2
  Go fast_newconfiglist.  Allocating...
     Allocated.  getting configurations.
  Excitations per shell
-         1         1         2
+         2         2         4
 
- BOTWALKS /TOPWALKS           1
-           1           1           1
+ BOTWALKS /TOPWALKS           4
+           1           4           4
 
       ...Done fast_newconfiglist
  Counting walks. Singles
  Counting walks. Doubles
 
  Maximum number of
-            single walks=             1
+            single walks=            16
             double walks=             0
-             total walks=             1
- TOTAL walks:                        1
+             total walks=            16
+ TOTAL walks:                       16
 
  Allocating singlewalks
  Allocating doublewalks
@@ -237,11 +243,11 @@ Mon Jul 10 22:51:50 PDT 2017
  Getting single hops...
  Getting double hops...
  GOT HOPS:  
-  Single hops this processor            1  of            1
+  Single hops this processor           12  of           16
   Double hops this processor            0  of            0
-  Single hops total                     1  of                     1
+  Single hops total                    12  of                    16
   Double hops total                     0  of                     0
-     Max single hops            1
+     Max single hops            3
      Max double hops            1
 
  Allocating more arrays for Slater determinants...
@@ -250,26 +256,26 @@ Mon Jul 10 22:51:50 PDT 2017
  Go spinwalk init. 
  Go get numspinwalks.
  Doing spin projector.
- Maximum number of spin walks=            0
- Avg number of spin walks=    0.0000000000000000     
+ Maximum number of spin walks=            1
+ Avg number of spin walks=   0.50000000000000000     
  Done spinwalk init.
  Calculating spin walks.
       ... done calculating spin walks.
     ... go spinsets ...
- Numspinsets this processor is            1   maxspinset size is            1
- Getting Spinset Projectors.  Numspinsets this process is            1
-                                        maxspinsetsize is            1
+ Numspinsets this processor is            3   maxspinset size is            2
+ Getting Spinset Projectors.  Numspinsets this process is            3
+                                        maxspinsetsize is            2
  ...done.  Eliminated            0  sets with total rank            0
 
  This processor: 
-       spin sets                   1
-       spin rank                       1  of            1
-       botspin,topspin:                1           1
-       df spin rank                    1  of            1
-       botdfspin,topdfspin:            1           1
+       spin sets                   3
+       spin rank                       3  of            4
+       botspin,topspin:                1           3
+       df spin rank                    3  of            4
+       botdfspin,topdfspin:            1           3
  All processors:
-       spin rank, S^2 =   0.75000000000000000       is            1  out of            1
-       df spin rank                    1  of            1
+       spin rank, S^2 =    0.0000000000000000       is            3  out of            4
+       df spin rank                    3  of            4
 
 
  ************************************
@@ -277,19 +283,18 @@ Mon Jul 10 22:51:50 PDT 2017
  ************************************
 
       DWWPTR Spin-adapted configurations by processor
-          1      1                   1
+          1      1                   4
 
  Calling init_project                16384
  Exact Diagonalization with vector size         1024
  DIRECT DIAG CALLED. ENERGIES: 
-           1 ( -1.4834221454206100     ,  0.0000000000000000     )
-           2 (-0.76883159021549763     ,  0.0000000000000000     )
-           3 (-0.41832065218113279     ,  0.0000000000000000     )
-           4 ( -9.6093740671541916E-002,  0.0000000000000000     )
-           5 ( 0.30597553702098501     ,  0.0000000000000000     )
-           6 ( 0.81233499186355829     ,  0.0000000000000000     )
-           7 (  1.4141478214676027     ,  0.0000000000000000     )
-           8 (  2.1144897055027547     ,  0.0000000000000000     )
+           1 ( -1.9999999999997400     ,  7.2328427969114983E-014)
+           2 ( -1.1250000000001226     , -3.5325991874020531E-014)
+           3 (-0.49999999999983691     ,  4.8780424144467815E-015)
+           4 (-0.12500000000002617     , -3.8948147007882077E-014)
+           5 (  1.4085996412989618E-003, -1.4453082828260486E-004)
+           6 (  5.6217649312823807E-003, -5.7970878216865337E-004)
+           7 (  1.2603577918440967E-002, -1.3109711404750899E-003)
 
  TEMPSTOP init_project debugflag 90210
  MCTDHF STOP!

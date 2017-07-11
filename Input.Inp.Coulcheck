@@ -28,20 +28,17 @@ parorbsplit=0
 
 &sinc1dparinp
 
-coulmode=0
-coulmode=1
+coulmode = -1
+twomode=1
 
 debugflag=0
 debugflag=90210
 num_skip_orbs=7
 
-twomode=1
-
    nucstrength=0d0
    twostrength=0d0
 
 twotype=1
-harmstrength=0d0
 
 orblanthresh=1d0
 orblanorder=1024
@@ -51,18 +48,18 @@ orbparflag=.false.
 toepflag=0
 
 numcenters=2
+nuccharges(1:2)   = 1d0, 1d0
+
 centershift(1:2) = -120,120
 centershift(1:2) = 0,0
 
-numcenters=2
-nuccharges(1:2)   = 1d0, 1d0
 numcenters=1
-nuccharges(1:2)   = 2d0, 0d0
+nuccharges(1)   = 2d0
 
 numpoints=1024
 
 spacing   = 0.01d0
-softness  = 0.02d0
+softness  = 1d0
 
 capflag=1
 capstart=30d0

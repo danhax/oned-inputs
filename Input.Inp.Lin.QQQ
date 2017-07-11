@@ -34,7 +34,6 @@ twomode=2
    twostrength=1d0
 
 twotype=1
-harmstrength=0d0
 
 orblanthresh=1d0
 orblanorder=2048

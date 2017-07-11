@@ -33,16 +33,13 @@ parorbsplit=0
 
 &sinc1dparinp
 
-coulmode=0
-coulmode=1
-
+coulmode = -1
 twomode=1
 
    nucstrength=1d0
    twostrength=1d0
 
 twotype=1
-harmstrength=0d0
 
 orblanthresh=1d0
 orblanorder=2048
@@ -56,7 +53,7 @@ centershift(1) = -QQQ,
 centershift(2) =  QQQ 
 
 nuccharges(1:2)  = 1d0, 1d0
-softness         = 0.2d0
+softness  = 1d0
 
 numpoints=1023
 numpoints=1022

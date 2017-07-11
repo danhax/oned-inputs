@@ -31,7 +31,6 @@ parorbsplit=0
 debugflag=90210
 
 twotype=1
-harmstrength=0d0
 
    twostrength=0d0
    nucstrength=0d0
@@ -45,10 +44,12 @@ toepflag=0
 
 numcenters  = 1
 nuccharges  = 1d0
-nuccharges  = 2d0
 nuccharges  = 3d0
 nuccharges  = 4d0
+nuccharges  = 2d0
 
+numcenters      = 1
+nuccharges(1)   = 2d0
 numcenters      = 2
 nuccharges(1:2) = 1d0,1d0
 
